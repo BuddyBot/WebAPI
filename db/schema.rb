@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105123916) do
+ActiveRecord::Schema.define(version: 20141111072518) do
 
   create_table "missions", force: true do |t|
     t.text     "body"
     t.decimal  "difficulty"
-    t.boolean  "closed"
+    t.boolean  "closed",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

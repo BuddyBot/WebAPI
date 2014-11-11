@@ -15,6 +15,12 @@ class MissionsController < ApplicationController
   # GET /missions/new
   def new
     @mission = Mission.new
+    @difficulties = [
+      ['easy', 1],
+      ['middle', 2],
+      ['difficult', 3],
+      ['very difficult', 4],
+    ]
   end
 
   # GET /missions/1/edit

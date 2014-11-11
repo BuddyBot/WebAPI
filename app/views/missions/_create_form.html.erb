@@ -17,11 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :difficulty %><br>
-    <%= f.text_field :difficulty %>
-  </div>
-  <div class="field">
-    <%= f.label :closed %><br>
-    <%= f.check_box :closed %>
+    <%= select :mission, :difficulty, @difficulties %>
   </div>
   <div class="actions">
     <%= f.submit %>
