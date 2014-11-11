@@ -1,4 +1,5 @@
 class MissionsController < ApplicationController
+  before_action :set_difficulties
   before_action :set_mission, only: [:show, :edit, :update, :destroy]
 
   # GET /missions
@@ -15,12 +16,6 @@ class MissionsController < ApplicationController
   # GET /missions/new
   def new
     @mission = Mission.new
-    @difficulties = [
-      ['easy', 1],
-      ['middle', 2],
-      ['difficult', 3],
-      ['very difficult', 4],
-    ]
   end
 
   # GET /missions/1/edit
@@ -68,6 +63,10 @@ class MissionsController < ApplicationController
   end
 
   private
+    def set_difficulties
+      @difficulties = BuddyBot::Application.config.difficulties
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_mission
       @mission = Mission.find(params[:id])
