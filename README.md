@@ -4,7 +4,11 @@ This is the BuddyBot web API includes RSNP
 
 ## Installation
 
-Simply clone this repository by following:
+If you use Vagrant, add this sentence to your `Vagrantfile`.
+
+	config.vm.network :forwarded_port, guest:3000, host:3000
+
+Then simply clone this repository to your VM by following:
 
 	$ git clone https://github.com/2014-enPiT-Robot/WebAPI.git
 
