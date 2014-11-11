@@ -7,7 +7,7 @@
 
 <p>
   <strong>Difficulty:</strong>
-  <%= @mission.difficulty %>
+  <%= @difficulties.select{|x| x[1] == @mission.difficulty}[0][0] %>
 </p>
 
 <%= link_to 'Back', root_path %>
