@@ -1,30 +1,34 @@
 <h1>BuddyBot</h1>
 
-<h2>Mission List</h2>
-<table border="1">
-  <thead>
-    <tr>
-      <th>Body</th>
-      <th>Difficulty</th>
-      <th>Closed</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @missions.each do |mission| %>
-      <tr>
-        <td><%= mission.body %></td>
-        <td><%= difficulty_text mission.difficulty %></td>
-        <td><%= mission.closed %></td>
-        <td><%= link_to 'Show', mission %></td>
-        <td><%= link_to 'Edit', edit_mission_path(mission) %></td>
-        <td><%= link_to 'Destroy', mission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<hr>
 
-<br>
+<h2>Mission List</h2>
+
+<% if @missions.empty? then %>
+  <p>No mission created.</p>
+<% else %>
+  <p>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Mission</th>
+          <th>Difficulty</th>
+          <th colspan="2">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @missions.each do |mission| %>
+          <tr>
+            <td><%= mission.body %></td>
+            <td><%= difficulty_text mission.difficulty %></td>
+            <td><%= link_to 'Edit', edit_mission_path(mission) %></td>
+            <td><%= link_to 'Close', mission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </p>
+<% end %>
 
 <%= link_to 'New Mission', new_mission_path %><br>
 <%= link_to 'Products', products_path %>
