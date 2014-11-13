@@ -1,5 +1,7 @@
 <h2>Shop</h2>
 
+<p id="notice"><%= notice %></p>
+
 <% if @products.empty? then %>
   <p>No product created.</p>
 <% else %>
@@ -9,7 +11,7 @@
         <tr>
           <th>Name</th>
           <th>Price</th>
-          <th>Action</th>
+          <th colspan="2">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -17,7 +19,8 @@
           <tr>
             <td><%= product.name %></td>
             <td><%= product.price %></td>
-            <td><%= link_to 'Buy', product %></td>
+            <td><%= link_to 'Detail', product %></td>
+            <td><%= link_to 'Document', document_path(product.id) %></td>
           </tr>
         <% end %>
       </tbody>

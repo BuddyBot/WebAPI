@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :purchase, :document]
 
   # GET /products
   # GET /products.json
@@ -59,6 +59,19 @@ class ProductsController < ApplicationController
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # POST /products/1/purchase
+  def purchase
+    @user.update({ :point => @user.point - @product.price })
+    respond_to do |format|
+      format.html { redirect_to products_url, notice: 'You got the product!' }
+      format.json { head :no_content }
+    end
+  end
+
+  # GET /products/1/document
+  def document
   end
 
   private
