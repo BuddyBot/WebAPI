@@ -1,4 +1,5 @@
 class MissionsController < ApplicationController
+  before_action :set_difficulties, only: [:new, :edit]
   before_action :set_mission, only: [:show, :edit, :update, :destroy]
 
   # GET /missions
@@ -15,7 +16,6 @@ class MissionsController < ApplicationController
   # GET /missions/new
   def new
     @mission = Mission.new
-    @difficulties = BuddyBot::Application.config.difficulties
   end
 
   # GET /missions/1/edit
@@ -55,14 +55,19 @@ class MissionsController < ApplicationController
   # DELETE /missions/1
   # DELETE /missions/1.json
   def destroy
+    @user.update({ :point => @user.point + @mission.difficulty })
     @mission.destroy
     respond_to do |format|
-      format.html { redirect_to missions_url, notice: 'Mission was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Mission was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_difficulties
+      @difficulties = BuddyBot::Application.config.difficulties
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_mission
       @mission = Mission.find(params[:id])
