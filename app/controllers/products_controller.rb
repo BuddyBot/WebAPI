@@ -63,6 +63,9 @@ class ProductsController < ApplicationController
 
   # POST /products/1/purchase
   def purchase
+    params = { :user_id => @user.id, :product_id => @product.id }
+    @purchased_product = PurchasedProduct.new(params)
+    @purchased_product.save
     @user.update({ :point => @user.point - @product.price })
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'You got the product!' }

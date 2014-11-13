@@ -20,7 +20,11 @@
             <td><%= product.name %></td>
             <td><%= product.price %></td>
             <td><%= link_to 'Detail', product %></td>
-            <td><%= link_to 'Document', document_path(product.id) %></td>
+            <% if @user.purchased_products.select {|val| val.product_id == product.id}.empty? %>
+              <td>-</td>
+            <% else %>
+              <td><%= link_to 'Document', document_path(product.id) %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
