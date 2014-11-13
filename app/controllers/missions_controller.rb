@@ -55,6 +55,8 @@ class MissionsController < ApplicationController
   # DELETE /missions/1
   # DELETE /missions/1.json
   def destroy
+    @user = User.find(1)
+    @user.update({ :point => @user.point + @mission.difficulty })
     @mission.destroy
     respond_to do |format|
       format.html { redirect_to root_url, notice: 'Mission was successfully destroyed.' }
