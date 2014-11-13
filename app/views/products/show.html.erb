@@ -10,5 +10,14 @@
   <%= @product.price %>
 </p>
 
-<%= button_to 'Buy this!', purchase_path %>
+<% if @user.purchased_products.purchased? @product.id %>
+  You have already bought this.<br>
+<% elsif @user.point < @product.price %>
+  You don't have enough point.<br>
+<% else %>
+  <%= button_to 'Buy this!', purchase_path %>
+<% end %>
+
+<br>
+
 <%= link_to 'Back', products_path %>
