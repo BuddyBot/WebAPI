@@ -20,7 +20,7 @@
             <td><%= product.name %></td>
             <td><%= product.price %></td>
             <td><%= link_to 'Detail', product %></td>
-            <% if @user.purchased_products.purchased? product.id %>
+            <% if @user.purchased_products.purchased? product %>
               <td><%= link_to 'Document', document_path(product.id) %></td>
             <% else %>
               <td>-</td>
