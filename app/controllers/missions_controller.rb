@@ -58,7 +58,7 @@ class MissionsController < ApplicationController
     @user.update({ :point => @user.point + @mission.difficulty })
     @mission.destroy
     respond_to do |format|
-      format.html { redirect_to root_url, notice: 'Mission was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Mission was successfully closed.' }
       format.json { head :no_content }
     end
   end

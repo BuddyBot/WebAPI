@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :missions
   resources :products
+  post 'products/:id/purchase' => 'products#purchase', as: :purchase
+  get 'products/:id/document' => 'products#document', as: :document
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
