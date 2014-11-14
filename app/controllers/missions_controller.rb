@@ -28,13 +28,14 @@ class MissionsController < ApplicationController
     @mission = Mission.new(mission_params)
 
     respond_to do |format|
-      if @mission.save
-        format.html { redirect_to @mission, notice: 'Mission was successfully created.' }
-        format.json { render :show, status: :created, location: @mission }
-      else
-        format.html { render :new }
-        format.json { render json: @mission.errors, status: :unprocessable_entity }
+      if system("db/send_mission.sh development.sqlite3 #{@mission.id} add")
+        if @mission.save
+          format.html { redirect_to @mission, notice: 'Mission was successfully created.' }
+          format.json { render :show, status: :created, location: @mission }
+        end
       end
+      format.html { render :new }
+      format.json { render json: @mission.errors, status: :unprocessable_entity }
     end
   end
 
@@ -55,11 +56,13 @@ class MissionsController < ApplicationController
   # DELETE /missions/1
   # DELETE /missions/1.json
   def destroy
-    @user.update({ :point => @user.point + @mission.difficulty })
-    @mission.destroy
-    respond_to do |format|
-      format.html { redirect_to root_url, notice: 'Mission was successfully closed.' }
-      format.json { head :no_content }
+    if system("db/send_mission.sh development.sqlite3 #{@mission.id} delete")
+      @user.update({ :point => @user.point + @mission.difficulty })
+      @mission.destroy
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: 'Mission was successfully closed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
