@@ -75,6 +75,12 @@ class ProductsController < ApplicationController
 
   # GET /products/1/document
   def document
+    if not @user.purchased_products.purchased? @product
+      respond_to do |format|
+        format.html { redirect_to products_url, notice: 'You don\'t have enough permission to see the document.' }
+        format.json { head :no_content }
+      end
+    end
   end
 
   private
