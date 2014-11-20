@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :set_user
 
   def dashboard
-    @missions = Mission.all
+    @missions = Mission.where(closed: false)
   end
 
   private

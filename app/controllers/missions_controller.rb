@@ -1,5 +1,5 @@
 class MissionsController < ApplicationController
-  before_action :set_difficulties, only: [:new, :edit]
+  before_action :set_difficulties, only: [:new, :edit, :create, :update]
   before_action :set_mission, only: [:show, :edit, :update, :destroy]
 
   # GET /missions
@@ -55,7 +55,7 @@ class MissionsController < ApplicationController
   # DELETE /missions/1.json
   def destroy
     @user.update({ :point => @user.point + @mission.difficulty })
-    @mission.destroy
+    @mission.update({ :closed => true })
     respond_to do |format|
       format.html { redirect_to root_url, notice: 'Mission was successfully closed.' }
       format.json { head :no_content }
