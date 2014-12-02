@@ -1,6 +1,7 @@
 class MissionsController < ApplicationController
   before_action :set_difficulties, only: [:new, :edit, :create, :update]
   before_action :set_mission, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /missions
   # GET /missions.json

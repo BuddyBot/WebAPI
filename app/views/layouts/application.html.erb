@@ -8,8 +8,14 @@
 </head>
 <body>
 
-<h1>BuddyBot</h1>
-<p>Welcome, <%= @user.name %> (<%= @user.point %> point)</p>
+<h1><%= link_to 'BuddyBot', root_path %></h1>
+
+<% if user_signed_in? %>
+  <p>Welcome, <%= @user.name %> (<%= @user.point %> point) |
+  <%= link_to "Sign-out", destroy_user_session_path, method: :delete %>
+  </p>
+<% end %>
+
 <hr>
 
 <%= yield %>
