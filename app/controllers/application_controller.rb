@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :set_user
 
   def dashboard
-    @missions = Mission.where(closed: false)
+    @missions = Mission.where(user_id: @user.id, closed: false)
   end
 
   private
