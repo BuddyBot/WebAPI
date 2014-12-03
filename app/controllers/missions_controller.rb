@@ -3,12 +3,6 @@ class MissionsController < ApplicationController
   before_action :set_mission, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  # GET /missions
-  # GET /missions.json
-  def index
-    @missions = Mission.all
-  end
-
   # GET /missions/1
   # GET /missions/1.json
   def show
