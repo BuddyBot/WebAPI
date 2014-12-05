@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   resources :missions
   resources :products
   post 'products/:id/purchase' => 'products#purchase', as: :purchase
