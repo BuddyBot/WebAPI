@@ -1,12 +1,7 @@
 class MissionsController < ApplicationController
   before_action :set_difficulties, only: [:new, :edit, :create, :update]
   before_action :set_mission, only: [:show, :edit, :update, :destroy]
-
-  # GET /missions
-  # GET /missions.json
-  def index
-    @missions = Mission.all
-  end
+  before_action :authenticate_user!
 
   # GET /missions/1
   # GET /missions/1.json
@@ -26,6 +21,7 @@ class MissionsController < ApplicationController
   # POST /missions.json
   def create
     @mission = Mission.new(mission_params)
+    @mission.user_id = @user.id
 
     respond_to do |format|
       if @mission.save
