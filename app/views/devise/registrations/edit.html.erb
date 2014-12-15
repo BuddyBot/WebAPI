@@ -9,8 +9,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :robot_id, "Robot ID" %><br />
-    <%= f.text_field :robot_id %>
+    <%= f.label :robot_pass, "Robot Password" %><br />
+    <%= f.text_field :robot_pass, disabled: true %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
