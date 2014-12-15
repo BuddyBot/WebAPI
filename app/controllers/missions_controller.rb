@@ -82,6 +82,9 @@ class MissionsController < ApplicationController
     def send_mission(user_name, mission_body)
       params = URI.encode_www_form([["id", user_name], ["contentsdata", mission_body]])
       uri = URI.parse("http://54.65.61.46:8080/ServiceSample/contentsupload?#{params}")
-      Net::HTTP.get_response(uri)
+      res = Net::HTTP.get_response(uri)
+      logger.debug("uri = #{uri}")
+      logger.debug("res = #{res}")
+      return res
     end
 end
