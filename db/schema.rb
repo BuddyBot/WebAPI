@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203113136) do
+ActiveRecord::Schema.define(version: 20141215094215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 20141203113136) do
     t.string   "name"
     t.string   "email"
     t.integer  "point",                  default: 0
-    t.string   "robot_id"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -53,10 +52,10 @@ ActiveRecord::Schema.define(version: 20141203113136) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "robot_pass"
   end
 
   add_index "users", ["name"], name: "index_users_on_name", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["robot_id"], name: "index_users_on_robot_id", unique: true, using: :btree
 
 end
