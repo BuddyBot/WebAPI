@@ -1,3 +1,6 @@
+require "net/http"
+require "uri"
+
 class MissionsController < ApplicationController
   before_action :set_difficulties, only: [:new, :edit, :create, :update]
   before_action :set_mission, only: [:show, :edit, :update, :destroy]
@@ -24,6 +27,8 @@ class MissionsController < ApplicationController
     @mission.user_id = @user.id
 
     respond_to do |format|
+      send_mission @user.name, @mission.body
+
       if @mission.save
         format.html { redirect_to @mission, notice: 'Mission was successfully created.' }
         format.json { render :show, status: :created, location: @mission }
@@ -52,6 +57,7 @@ class MissionsController < ApplicationController
   def destroy
     @user.update({ :point => @user.point + @mission.difficulty })
     @mission.update({ :closed => true })
+    send_mission @user.name, ' '
     respond_to do |format|
       format.html { redirect_to root_url, notice: 'Mission was successfully closed.' }
       format.json { head :no_content }
@@ -71,5 +77,11 @@ class MissionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def mission_params
       params.require(:mission).permit(:body, :difficulty, :closed)
+    end
+
+    def send_mission(user_name, mission_body)
+      params = URI.encode_www_form([["id", user_name], ["contentsdata", mission_body]])
+      uri = URI.parse("http://54.65.61.46:8080/ServiceSample/contentsupload?#{params}")
+      Net::HTTP.get_response(uri)
     end
 end

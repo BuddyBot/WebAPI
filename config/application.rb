@@ -25,5 +25,6 @@ module BuddyBot
       ['difficult', 3],
       ['very difficult', 4],
     ]
+    config.assets.paths << "#{Rails}/vender/assets/fonts"
   end
 end
