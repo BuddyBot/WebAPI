@@ -1,6 +1,7 @@
 require 'securerandom'
 
 class RegistrationsController < Devise::RegistrationsController
+  layout 'login', only: [:new]
 
   private
     def sign_up_params
