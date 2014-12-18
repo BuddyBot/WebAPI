@@ -19,7 +19,7 @@
         <% @products.each do |product| %>
           <tr>
             <td><%= product.name %></td>
-            <td><%= product.price %></td>
+            <td><%= product.price.to_i %></td>
             <td><%= link_to 'Detail', product, class: 'btn btn-default' %></td>
             <% if @user.purchased_products.purchased? product %>
               <td><%= link_to 'Document', document_path(product.id), class: 'btn btn-default' %></td>
