@@ -1,17 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Missions</h2>
+<h1 class="page-header">Missions</h1>
 
 <% if @missions.empty? then %>
   <p>No mission created.</p>
 <% else %>
-  <p>
-    <table border="1">
+  <div class="table-responsive">
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>Mission</th>
           <th>Difficulty</th>
-          <th colspan="2">Action</th>
+          <th>Edit</th>
+          <th>Close</th>
         </tr>
       </thead>
       <tbody>
@@ -19,14 +20,13 @@
           <tr>
             <td><%= mission.body %></td>
             <td><%= difficulty_text mission.difficulty %></td>
-            <td><%= link_to 'Edit', edit_mission_path(mission) %></td>
-            <td><%= link_to 'Close', mission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Edit', edit_mission_path(mission), class: 'btn btn-default' %></td>
+            <td><%= link_to 'Close', mission, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-  </p>
+  </div>
 <% end %>
 
-<%= link_to 'New Mission', new_mission_path %><br>
-
+<%= link_to 'New Mission', new_mission_path, class: 'btn btn-default' %><br>
