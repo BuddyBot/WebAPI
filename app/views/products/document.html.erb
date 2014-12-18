@@ -1,11 +1,5 @@
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+<h1 class="page-header"><%= @product.name %></h1>
 
-<p>
-  <strong>Document:</strong><br>
-  <%= image_tag "document_#{@product.id}.jpg"  %>
-</p>
+<p><%= image_tag "document_#{@product.id}.jpg"  %></p>
 
-<%= link_to 'Back', products_path %>
+<%= button_to 'Back', products_path, class: 'btn btn-default', method: :get %>
