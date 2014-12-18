@@ -35,8 +35,12 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li><%= link_to 'Dashboard', root_path %></li>
-        <li><%= link_to 'Shop', products_path %></li>
+        <li<%= (controller_name == 'application') ? ' class=active' : '' %>>
+          <%= link_to 'Dashboard', root_path %>
+        </li>
+        <li<%= (controller_name == 'products') ? ' class=active' : '' %>>
+          <%= link_to 'Shop', products_path %>
+        </li>
       </ul>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
