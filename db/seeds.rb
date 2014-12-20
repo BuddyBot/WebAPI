@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Product.create([
-  {name: 'Sugoi Feature', price: 3},
-  {name: 'Futsuu Feature', price: 2},
-  {name: 'Kantan Feature', price: 1},
+  {name: 'King Cobra Lv.3: Head', price: 3},
+  {name: 'King Cobra Lv.2: Neck', price: 2},
+  {name: 'King Cobra Lv.1: Body and tail', price: 1},
 ])
