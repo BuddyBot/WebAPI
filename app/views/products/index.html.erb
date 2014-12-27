@@ -13,6 +13,7 @@
           <th>Price</th>
           <th>Detail</th>
           <th>Document</th>
+          <th>ChangeFeature</th>
         </tr>
       </thead>
       <tbody>
@@ -23,6 +24,11 @@
             <td><%= link_to 'Detail', product, class: 'btn btn-default' %></td>
             <% if @user.purchased_products.purchased? product %>
               <td><%= link_to 'Document', document_path(product.id), class: 'btn btn-default' %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% if product.document == false and @user.purchased_products.purchased? product %>
+              <td><%= button_to "Change", send_change_token_path(product.id, :user_name => @user.name, :token => product.feature_change_token), class: 'btn btn-default' %></td>
             <% else %>
               <td>-</td>
             <% end %>

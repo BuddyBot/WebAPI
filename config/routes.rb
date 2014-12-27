@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations', sessions: 'sessions' }
   resources :missions
-  resources :products
+  resources :products 
+  post 'products/:id/send_change_token' => 'products#send_change_token', as: :send_change_token
   post 'products/:id/purchase' => 'products#purchase', as: :purchase
   get 'products/:id/document' => 'products#document', as: :document
 
